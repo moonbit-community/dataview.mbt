@@ -16,7 +16,7 @@ pub fn read_uint16_be(data : ArrayView[Byte], offset : Int) -> UInt {
 
 ///|
 pub fn write_uint16_le(
-  data : ArrayView[Byte],
+  data : MutArrayView[Byte],
   offset : Int,
   value : UInt,
 ) -> Unit {
@@ -26,7 +26,7 @@ pub fn write_uint16_le(
 
 ///|
 pub fn write_uint16_be(
-  data : ArrayView[Byte],
+  data : MutArrayView[Byte],
   offset : Int,
   value : UInt,
 ) -> Unit {
@@ -54,7 +54,7 @@ pub fn read_uint32_be(data : ArrayView[Byte], offset : Int) -> UInt {
 
 ///|
 pub fn write_uint32_le(
-  data : ArrayView[Byte],
+  data : MutArrayView[Byte],
   offset : Int,
   value : UInt,
 ) -> Unit {
@@ -66,7 +66,7 @@ pub fn write_uint32_le(
 
 ///|
 pub fn write_uint32_be(
-  data : ArrayView[Byte],
+  data : MutArrayView[Byte],
   offset : Int,
   value : UInt,
 ) -> Unit {
