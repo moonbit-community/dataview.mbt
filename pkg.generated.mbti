@@ -1,0 +1,58 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "illusory0x0/dataview"
+
+// Values
+pub fn read_uint16_be(ArrayView[Byte], Int) -> UInt
+
+pub fn read_uint16_le(ArrayView[Byte], Int) -> UInt
+
+pub fn read_uint32_be(ArrayView[Byte], Int) -> UInt
+
+pub fn read_uint32_le(ArrayView[Byte], Int) -> UInt
+
+pub fn write_uint16_be(MutArrayView[Byte], Int, UInt) -> Unit
+
+pub fn write_uint16_le(MutArrayView[Byte], Int, UInt) -> Unit
+
+pub fn write_uint32_be(MutArrayView[Byte], Int, UInt) -> Unit
+
+pub fn write_uint32_le(MutArrayView[Byte], Int, UInt) -> Unit
+
+// Errors
+
+// Types and methods
+pub struct DataView {
+  data : MutArrayView[Byte]
+  offset : Int
+  length : Int
+}
+pub fn DataView::byte_length(Self) -> Int
+pub fn DataView::byte_offset(Self) -> Int
+pub fn DataView::check_bounds(Self, Int, Int) -> Unit
+pub fn DataView::copy(Self) -> Self
+pub fn DataView::from_bytes(MutArrayView[Byte], offset? : Int, length? : Int?) -> Self
+pub fn DataView::get_bytes(Self, Int, Int) -> ArrayView[Byte]
+pub fn DataView::get_float32(Self, Int, little_endian? : Bool) -> Float
+pub fn DataView::get_float64(Self, Int, little_endian? : Bool) -> Double
+pub fn DataView::get_int16(Self, Int, little_endian? : Bool) -> Int
+pub fn DataView::get_int32(Self, Int, little_endian? : Bool) -> Int
+pub fn DataView::get_int8(Self, Int) -> Int
+pub fn DataView::get_uint16(Self, Int, little_endian? : Bool) -> UInt
+pub fn DataView::get_uint32(Self, Int, little_endian? : Bool) -> UInt
+pub fn DataView::get_uint8(Self, Int) -> UInt
+pub fn DataView::new(MutArrayView[Byte], offset? : Int) -> Self
+pub fn DataView::set_float32(Self, Int, Float, little_endian? : Bool) -> Unit
+pub fn DataView::set_float64(Self, Int, Double, little_endian? : Bool) -> Unit
+pub fn DataView::set_int16(Self, Int, Int, little_endian? : Bool) -> Unit
+pub fn DataView::set_int32(Self, Int, Int, little_endian? : Bool) -> Unit
+pub fn DataView::set_int8(Self, Int, Int) -> Unit
+pub fn DataView::set_uint16(Self, Int, UInt, little_endian? : Bool) -> Unit
+pub fn DataView::set_uint32(Self, Int, UInt, little_endian? : Bool) -> Unit
+pub fn DataView::set_uint8(Self, Int, UInt) -> Unit
+pub fn DataView::to_string(Self) -> String
+pub impl Show for DataView
+
+// Type aliases
+
+// Traits
+
