@@ -1,6 +1,7 @@
 // Utility methods for DataView
 
-///| Get a range of bytes as an ArrayView
+///|
+/// Get a range of bytes as an ArrayView
 pub fn DataView::get_bytes(
   self : DataView,
   start : Int,
@@ -12,20 +13,18 @@ pub fn DataView::get_bytes(
   self.data[start:start + length]
 }
 
-///| Create a copy of this DataView with independent underlying data
+///|
+/// Create a copy of this DataView with independent underlying data
 pub fn DataView::copy(self : DataView) -> DataView {
   let new_data = Array::make(self.byte_length(), b'\x00')
   for i = 0; i < self.byte_length(); i = i + 1 {
     new_data[i] = self.data[i]
   }
-  {
-    data: new_data.mut_view(),
-    offset: 0,
-    length: new_data.length(),
-  }
+  { data: new_data.mut_view(), offset: 0, length: new_data.length() }
 }
 
-///| Convert DataView to a string representation
+///|
+/// Convert DataView to a string representation
 pub fn DataView::to_string(self : DataView) -> String {
   let buffer = "DataView { length: " +
     self.byte_length().to_string() +
