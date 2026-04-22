@@ -181,7 +181,7 @@ The implementation is organized across several focused modules:
 - **`float_ops.mbt`** - Floating point operations (32-bit and 64-bit)
 - **`endian_helpers.mbt`** - Endianness conversion helper functions
 - **`utilities.mbt`** - Utility methods and string representation
-- **`dataview.mbti`** - Type interface definitions
+- **`pkg.generated.mbti`** - Type interface definitions
 
 ## Compatibility
 
