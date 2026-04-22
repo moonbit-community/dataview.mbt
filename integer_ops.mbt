@@ -2,7 +2,8 @@
 
 // 8-bit integer operations
 
-///| Get an 8-bit signed integer at the specified byte offset
+///|
+/// Get an 8-bit signed integer at the specified byte offset
 pub fn DataView::get_int8(self : DataView, byte_offset : Int) -> Int {
   self.check_bounds(byte_offset, 1)
   let byte_val = self.data[byte_offset].to_int()
@@ -13,7 +14,8 @@ pub fn DataView::get_int8(self : DataView, byte_offset : Int) -> Int {
   }
 }
 
-///| Set an 8-bit signed integer at the specified byte offset
+///|
+/// Set an 8-bit signed integer at the specified byte offset
 pub fn DataView::set_int8(
   self : DataView,
   byte_offset : Int,
@@ -24,13 +26,15 @@ pub fn DataView::set_int8(
   self.data[byte_offset] = (byte_val & 0xFF).to_byte()
 }
 
-///| Get an 8-bit unsigned integer at the specified byte offset
+///|
+/// Get an 8-bit unsigned integer at the specified byte offset
 pub fn DataView::get_uint8(self : DataView, byte_offset : Int) -> UInt {
   self.check_bounds(byte_offset, 1)
   self.data[byte_offset].to_uint()
 }
 
-///| Set an 8-bit unsigned integer at the specified byte offset
+///|
+/// Set an 8-bit unsigned integer at the specified byte offset
 pub fn DataView::set_uint8(
   self : DataView,
   byte_offset : Int,
@@ -42,11 +46,12 @@ pub fn DataView::set_uint8(
 
 // 16-bit integer operations
 
-///| Get a 16-bit signed integer at the specified byte offset
+///|
+/// Get a 16-bit signed integer at the specified byte offset
 pub fn DataView::get_int16(
   self : DataView,
   byte_offset : Int,
-  little_endian~ : Bool = false,
+  little_endian? : Bool = false,
 ) -> Int {
   self.check_bounds(byte_offset, 2)
   let uint_val = if little_endian {
@@ -62,12 +67,13 @@ pub fn DataView::get_int16(
   }
 }
 
-///| Set a 16-bit signed integer at the specified byte offset
+///|
+/// Set a 16-bit signed integer at the specified byte offset
 pub fn DataView::set_int16(
   self : DataView,
   byte_offset : Int,
   value : Int,
-  little_endian~ : Bool = false,
+  little_endian? : Bool = false,
 ) -> Unit {
   self.check_bounds(byte_offset, 2)
   // Convert signed 16-bit to unsigned 16-bit for storage
@@ -83,11 +89,12 @@ pub fn DataView::set_int16(
   }
 }
 
-///| Get a 16-bit unsigned integer at the specified byte offset
+///|
+/// Get a 16-bit unsigned integer at the specified byte offset
 pub fn DataView::get_uint16(
   self : DataView,
   byte_offset : Int,
-  little_endian~ : Bool = false,
+  little_endian? : Bool = false,
 ) -> UInt {
   self.check_bounds(byte_offset, 2)
   if little_endian {
@@ -97,12 +104,13 @@ pub fn DataView::get_uint16(
   }
 }
 
-///| Set a 16-bit unsigned integer at the specified byte offset
+///|
+/// Set a 16-bit unsigned integer at the specified byte offset
 pub fn DataView::set_uint16(
   self : DataView,
   byte_offset : Int,
   value : UInt,
-  little_endian~ : Bool = false,
+  little_endian? : Bool = false,
 ) -> Unit {
   self.check_bounds(byte_offset, 2)
   if little_endian {
@@ -114,11 +122,12 @@ pub fn DataView::set_uint16(
 
 // 32-bit integer operations
 
-///| Get a 32-bit signed integer at the specified byte offset
+///|
+/// Get a 32-bit signed integer at the specified byte offset
 pub fn DataView::get_int32(
   self : DataView,
   byte_offset : Int,
-  little_endian~ : Bool = false,
+  little_endian? : Bool = false,
 ) -> Int {
   self.check_bounds(byte_offset, 4)
   let uint_val = if little_endian {
@@ -130,12 +139,13 @@ pub fn DataView::get_int32(
   uint_val.reinterpret_as_int()
 }
 
-///| Set a 32-bit signed integer at the specified byte offset
+///|
+/// Set a 32-bit signed integer at the specified byte offset
 pub fn DataView::set_int32(
   self : DataView,
   byte_offset : Int,
   value : Int,
-  little_endian~ : Bool = false,
+  little_endian? : Bool = false,
 ) -> Unit {
   self.check_bounds(byte_offset, 4)
   // For 32-bit values, reinterpret_as_uint handles the conversion correctly
@@ -147,11 +157,12 @@ pub fn DataView::set_int32(
   }
 }
 
-///| Get a 32-bit unsigned integer at the specified byte offset
+///|
+/// Get a 32-bit unsigned integer at the specified byte offset
 pub fn DataView::get_uint32(
   self : DataView,
   byte_offset : Int,
-  little_endian~ : Bool = false,
+  little_endian? : Bool = false,
 ) -> UInt {
   self.check_bounds(byte_offset, 4)
   if little_endian {
@@ -161,12 +172,13 @@ pub fn DataView::get_uint32(
   }
 }
 
-///| Set a 32-bit unsigned integer at the specified byte offset
+///|
+/// Set a 32-bit unsigned integer at the specified byte offset
 pub fn DataView::set_uint32(
   self : DataView,
   byte_offset : Int,
   value : UInt,
-  little_endian~ : Bool = false,
+  little_endian? : Bool = false,
 ) -> Unit {
   self.check_bounds(byte_offset, 4)
   if little_endian {
