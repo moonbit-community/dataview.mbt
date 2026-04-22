@@ -6,7 +6,7 @@ pub fn DataView::get_bytes(
   start : Int,
   length : Int,
 ) -> ArrayView[Byte] {
-  if start < 0 || length < 0 || start + length > self.data.length() {
+  if start < 0 || length < 0 || start + length > self.byte_length() {
     abort("DataView get_bytes out of bounds")
   }
   self.data[start:start + length]
@@ -14,26 +14,30 @@ pub fn DataView::get_bytes(
 
 ///| Create a copy of this DataView with independent underlying data
 pub fn DataView::copy(self : DataView) -> DataView {
-  let new_data = Array::make(self.data.length(), b'\x00')
-  for i = 0; i < self.data.length(); i = i + 1 {
+  let new_data = Array::make(self.byte_length(), b'\x00')
+  for i = 0; i < self.byte_length(); i = i + 1 {
     new_data[i] = self.data[i]
   }
-  { data: new_data[:] }
+  {
+    data: new_data.mut_view(),
+    offset: 0,
+    length: new_data.length(),
+  }
 }
 
 ///| Convert DataView to a string representation
 pub fn DataView::to_string(self : DataView) -> String {
   let buffer = "DataView { length: " +
-    self.data.length().to_string() +
+    self.byte_length().to_string() +
     ", data: ["
   let mut result = buffer
-  for i = 0; i < self.data.length() && i < 16; i = i + 1 {
+  for i = 0; i < self.byte_length() && i < 16; i = i + 1 {
     if i > 0 {
       result = result + ", "
     }
     result = result + "0x" + self.data[i].to_int().to_string()
   }
-  if self.data.length() > 16 {
+  if self.byte_length() > 16 {
     result = result + ", ..."
   }
   result = result + "] }"

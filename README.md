@@ -1,6 +1,6 @@
 # DataView for MoonBit
 
-A comprehensive MoonBit implementation of JavaScript's DataView API for binary data manipulation. This library provides a way to read and write multi-byte numeric values in ArrayView[Byte] with control over byte order (endianness).
+A comprehensive MoonBit implementation of JavaScript's DataView API for binary data manipulation. This library provides a way to read and write multi-byte numeric values in MutArrayView[Byte] with control over byte order (endianness).
 
 ## Features
 
@@ -8,7 +8,7 @@ A comprehensive MoonBit implementation of JavaScript's DataView API for binary d
 - **Endianness Support**: Read/write in both big-endian and little-endian byte order
 - **Type Safety**: Full MoonBit type safety with proper error handling
 - **Multiple Data Types**: Support for Int8, UInt8, Int16, UInt16, Int32, UInt32, Float32, Float64
-- **Memory Efficient**: Uses ArrayView[Byte] for zero-copy operations where possible
+- **Memory Efficient**: Uses MutArrayView[Byte] for writable zero-copy operations and ArrayView[Byte] for read-only views
 - **Modular Design**: Clean separation of concerns across multiple files
 
 ## Installation
@@ -34,7 +34,7 @@ Then import it in your `moon.pkg.json`:
 let data : Array[Byte] = [0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07]
 
 // Create a DataView
-let view = DataView::new(data[:])
+let view = DataView::new(data.mut_view())
 
 // Read/write 8-bit values
 let byte_value = view.get_uint8(0)  // Returns 0
@@ -61,10 +61,10 @@ let double_val = view.get_float64(0, little_endian~=false)
 
 ### Constructor Methods
 
-#### `DataView::new(data: ArrayView[Byte], offset~: Int = 0) -> DataView`
-Creates a new DataView from an ArrayView[Byte] with optional offset.
+#### `DataView::new(data: MutArrayView[Byte], offset~: Int = 0) -> DataView`
+Creates a new DataView from a MutArrayView[Byte] with optional offset.
 
-#### `DataView::from_bytes(data: ArrayView[Byte], offset~: Int = 0, length~: Int? = None) -> DataView`
+#### `DataView::from_bytes(data: MutArrayView[Byte], offset~: Int = 0, length~: Int? = None) -> DataView`
 Creates a DataView with specified offset and optional length limit.
 
 ### Properties
@@ -151,7 +151,7 @@ All multi-byte read/write operations support endianness control:
 
 ```moonbit
 let data = [0x12, 0x34, 0x56, 0x78]
-let view = DataView::new(data[:])
+let view = DataView::new(data.mut_view())
 
 // Big-endian: 0x12345678
 let big_endian = view.get_uint32(0, little_endian~=false)

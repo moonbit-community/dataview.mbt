@@ -50,9 +50,9 @@ pub fn DataView::get_int16(
 ) -> Int {
   self.check_bounds(byte_offset, 2)
   let uint_val = if little_endian {
-    read_uint16_le(self.data, byte_offset)
+    read_uint16_le(self.data[:], byte_offset)
   } else {
-    read_uint16_be(self.data, byte_offset)
+    read_uint16_be(self.data[:], byte_offset)
   }
   // Convert unsigned 16-bit to signed 16-bit
   if uint_val >= 32768U {
@@ -91,9 +91,9 @@ pub fn DataView::get_uint16(
 ) -> UInt {
   self.check_bounds(byte_offset, 2)
   if little_endian {
-    read_uint16_le(self.data, byte_offset)
+    read_uint16_le(self.data[:], byte_offset)
   } else {
-    read_uint16_be(self.data, byte_offset)
+    read_uint16_be(self.data[:], byte_offset)
   }
 }
 
@@ -122,9 +122,9 @@ pub fn DataView::get_int32(
 ) -> Int {
   self.check_bounds(byte_offset, 4)
   let uint_val = if little_endian {
-    read_uint32_le(self.data, byte_offset)
+    read_uint32_le(self.data[:], byte_offset)
   } else {
-    read_uint32_be(self.data, byte_offset)
+    read_uint32_be(self.data[:], byte_offset)
   }
   // For 32-bit values, reinterpret_as_int handles the conversion correctly
   uint_val.reinterpret_as_int()
@@ -155,9 +155,9 @@ pub fn DataView::get_uint32(
 ) -> UInt {
   self.check_bounds(byte_offset, 4)
   if little_endian {
-    read_uint32_le(self.data, byte_offset)
+    read_uint32_le(self.data[:], byte_offset)
   } else {
-    read_uint32_be(self.data, byte_offset)
+    read_uint32_be(self.data[:], byte_offset)
   }
 }
 
