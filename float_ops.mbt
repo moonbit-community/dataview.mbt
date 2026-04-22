@@ -7,7 +7,7 @@ pub fn DataView::get_float32(
   little_endian~ : Bool = false,
 ) -> Float {
   let uint_val = self.get_uint32(byte_offset, little_endian~)
-  uint_val.reinterpret_as_float()
+  Float::reinterpret_from_uint(uint_val)
 }
 
 ///| Set a 32-bit float at the specified byte offset
