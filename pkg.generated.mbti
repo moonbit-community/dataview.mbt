@@ -41,6 +41,7 @@ pub fn DataView::get_uint16(Self, Int, little_endian? : Bool) -> UInt
 pub fn DataView::get_uint32(Self, Int, little_endian? : Bool) -> UInt
 pub fn DataView::get_uint8(Self, Int) -> UInt
 pub fn DataView::new(MutArrayView[Byte], offset? : Int) -> Self
+pub fn DataView::output(Self, &Logger) -> Unit
 pub fn DataView::set_float32(Self, Int, Float, little_endian? : Bool) -> Unit
 pub fn DataView::set_float64(Self, Int, Double, little_endian? : Bool) -> Unit
 pub fn DataView::set_int16(Self, Int, Int, little_endian? : Bool) -> Unit
@@ -55,4 +56,3 @@ pub impl Show for DataView
 // Type aliases
 
 // Traits
-

@@ -44,6 +44,6 @@ pub fn DataView::to_string(self : DataView) -> String {
 }
 
 ///|
-pub impl Show for DataView with output(self, logger) {
+pub impl Show for DataView with fn output(self, logger) {
   logger.write_string(self.to_string())
 }
