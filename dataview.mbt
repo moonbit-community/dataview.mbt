@@ -3,26 +3,29 @@
 ///|
 pub struct DataView {
   data : MutArrayView[Byte]
-  offset : Int
-  length : Int
+  offset : Int32
+  length : Int32
 }
 
 ///|
 /// Create a new DataView from MutArrayView[Byte] with optional offset
-pub fn DataView::new(data : MutArrayView[Byte], offset? : Int = 0) -> DataView {
+pub fn DataView::new(
+  data : MutArrayView[Byte],
+  offset~ : Int32 = 0,
+) -> DataView {
   if offset < 0 || offset > data.length() {
     abort("DataView offset out of bounds")
   }
   let view = data.mut_view(start=offset)
-  { data: view, offset: view.start_offset(), length: view.length() }
+  { data: view, offset: view.start_offset(), length: view.length(), }
 }
 
 ///|
 /// Create a DataView from bytes with optional offset and length
 pub fn DataView::from_bytes(
   data : MutArrayView[Byte],
-  offset? : Int = 0,
-  length? : Int? = None,
+  offset~ : Int32 = 0,
+  length~ : Int32? = None,
 ) -> DataView {
   if offset < 0 || offset > data.length() {
     abort("DataView offset out of bounds")
@@ -41,18 +44,18 @@ pub fn DataView::from_bytes(
     }
   }
   let view = data.mut_view(start=offset, end=end_offset)
-  { data: view, offset: view.start_offset(), length: view.length() }
+  { data: view, offset: view.start_offset(), length: view.length(), }
 }
 
 ///|
 /// Get the byte length of this DataView
-pub fn DataView::byte_length(self : DataView) -> Int {
+pub fn DataView::byte_length(self : DataView) -> Int32 {
   self.length
 }
 
 ///|
 /// Get the byte offset of this DataView
-pub fn DataView::byte_offset(self : DataView) -> Int {
+pub fn DataView::byte_offset(self : DataView) -> Int32 {
   self.offset
 }
 
@@ -60,8 +63,8 @@ pub fn DataView::byte_offset(self : DataView) -> Int {
 /// Check if the given offset and size are within bounds
 pub fn DataView::check_bounds(
   self : DataView,
-  byte_offset : Int,
-  byte_size : Int,
+  byte_offset : Int32,
+  byte_size : Int32,
 ) -> Unit {
   if byte_offset < 0 {
     abort("DataView byte_offset cannot be negative")
