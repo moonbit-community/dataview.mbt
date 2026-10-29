@@ -4,8 +4,8 @@
 /// Get a 32-bit float at the specified byte offset
 pub fn DataView::get_float32(
   self : DataView,
-  byte_offset : Int,
-  little_endian? : Bool = false,
+  byte_offset : Int32,
+  little_endian~ : Bool = false,
 ) -> Float {
   let uint_val = self.get_uint32(byte_offset, little_endian~)
   Float::reinterpret_from_uint(uint_val)
@@ -15,9 +15,9 @@ pub fn DataView::get_float32(
 /// Set a 32-bit float at the specified byte offset
 pub fn DataView::set_float32(
   self : DataView,
-  byte_offset : Int,
+  byte_offset : Int32,
   value : Float,
-  little_endian? : Bool = false,
+  little_endian~ : Bool = false,
 ) -> Unit {
   let uint_val = value.reinterpret_as_uint()
   self.set_uint32(byte_offset, uint_val, little_endian~)
@@ -27,8 +27,8 @@ pub fn DataView::set_float32(
 /// Get a 64-bit double at the specified byte offset
 pub fn DataView::get_float64(
   self : DataView,
-  byte_offset : Int,
-  little_endian? : Bool = false,
+  byte_offset : Int32,
+  little_endian~ : Bool = false,
 ) -> Double {
   self.check_bounds(byte_offset, 8)
   let high = self.get_uint32(byte_offset, little_endian~)
@@ -45,9 +45,9 @@ pub fn DataView::get_float64(
 /// Set a 64-bit double at the specified byte offset
 pub fn DataView::set_float64(
   self : DataView,
-  byte_offset : Int,
+  byte_offset : Int32,
   value : Double,
-  little_endian? : Bool = false,
+  little_endian~ : Bool = false,
 ) -> Unit {
   self.check_bounds(byte_offset, 8)
   let bits = value.reinterpret_as_int64()

@@ -4,8 +4,8 @@
 /// Get a range of bytes as an ArrayView
 pub fn DataView::get_bytes(
   self : DataView,
-  start : Int,
-  length : Int,
+  start : Int32,
+  length : Int32,
 ) -> ArrayView[Byte] {
   if start < 0 || length < 0 || start + length > self.byte_length() {
     abort("DataView get_bytes out of bounds")
@@ -20,7 +20,7 @@ pub fn DataView::copy(self : DataView) -> DataView {
   for i = 0; i < self.byte_length(); i = i + 1 {
     new_data[i] = self.data[i]
   }
-  { data: new_data.mut_view(), offset: 0, length: new_data.length() }
+  { data: new_data.mut_view(), offset: 0, length: new_data.length(), }
 }
 
 ///|
@@ -44,6 +44,6 @@ pub fn DataView::to_string(self : DataView) -> String {
 }
 
 ///|
-pub impl Show for DataView with output(self, logger) {
+pub impl Show for DataView with fn output(self, logger) {
   logger.write_string(self.to_string())
 }
